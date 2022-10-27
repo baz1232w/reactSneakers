@@ -1,0 +1,137 @@
+.cart {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    width: 385px;
+    height: 100%;
+    padding: 32px 30px 30px 30px;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    z-index: 9999;
+}
+
+.cart h3{
+    font-size: 24px;
+    font-weight: 700;
+}
+.overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 9999;
+}
+
+.open {
+    display: block;
+}
+
+.close {
+
+    display: none;
+}
+
+.itemCart {
+    margin: 25px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border: 1px solid #F3F3F3;
+    border-radius: 20px;
+}
+
+.itemCart img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 8px;
+}
+
+.itemCart p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.itemCart .price{
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.itemCart ion-icon{
+    border: 1px solid #F3F3F3;
+    border-radius: 5px;
+}
+
+.orderBtn{
+    margin-top: 24px;
+
+    width: 100%;
+    max-width: 325px;
+    height: 55px;
+
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-width: 600;
+
+    background-color: #9DD458;
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.orderBtn:hover {
+    letter-spacing: 2px
+}
+
+.emptyPage {
+    width: 100%;
+    text-align: center;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyPage img{
+    width: 120px;
+    height: 120px;
+}
+
+.emptyPage h3{
+    margin-top: 22px;
+    margin-bottom: 11px;
+}
+
+.emptyPage p{
+    font-size: 16px;
+    font-weight: 400;
+    color: #9B9B9B;
+}
+
+.backBtn{
+    display: inline-block;
+    margin-top: 41px;
+
+    width: 100%;
+    max-width: 245px;
+    height: 55px;
+    background-color: #9DD458;
+
+    border-radius: 20px;
+    border: 0;
+    cursor: pointer;
+
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+

@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.container{
+    width: 100%;
+    max-width: 1080px;
+    padding-bottom:20px ;
+    margin: 85px auto 0px auto;
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    border-radius: 20px 20px 0px 0px;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
