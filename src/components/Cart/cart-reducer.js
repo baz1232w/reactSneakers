@@ -3,10 +3,12 @@ import jsonRequest from "../../axiosRequests/jsonRequest";
 const TOGGLE_CART = 'cart-reducer/toggle-cart'
 const ADD_TO_CART = 'cart-reducer/add-to-cart'
 const SET_TOTAL_PRICE = 'cart-reducer/set-total-price'
+const ORDER_COMPLETE = 'cart-reducer/order-complete'
 
 const initialState = {
     items: [],
     isOpen: false,
+    orderComplete: false,
     totalPrice:null
 }
 
@@ -27,11 +29,17 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 totalPrice: state.items.reduce((sum,el) => sum += el.price,0)
             }
+        case ORDER_COMPLETE:
+            return{
+                ...state,
+                orderComplete: action.result
+            }
         default:
             return state
     }
 }
 
+export const setOrderComplete = (result) => ({type:ORDER_COMPLETE,result})
 
 const getItemsInCart = (items) => ({type: ADD_TO_CART, items})
 
@@ -43,13 +51,13 @@ export const getItemsInCartThunk = () => async (dispatch) => {
     dispatch(getItemsInCart(await jsonRequest.getItemsInCart()))
 }
 
-export const addToCart =(id) => async (dispatch) => {
-    const item = await jsonRequest.getItem(id)
-    await jsonRequest.setToCart(item)
-    dispatch(getItemsInCart(await jsonRequest.getItemsInCart()))
-    dispatch(setTotalPrice())
-
-}
+// export const addToCart =(id) => async (dispatch) => {
+//     const item = await jsonRequest.getItem(id)
+//     await jsonRequest.setToCart(item)
+//     dispatch(getItemsInCart(await jsonRequest.getItemsInCart()))
+//     dispatch(setTotalPrice())
+//
+// }
 
 export const deleteCartItem = (id) => async (dispatch) => {
     await jsonRequest.deleteItemFromCart(id)

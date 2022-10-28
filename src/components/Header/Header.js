@@ -2,13 +2,14 @@ import {connect} from "react-redux";
 import style from './Header.module.css'
 import Logo from "./Logo/Logo";
 import {NavLink} from "react-router-dom";
-import {getItemsInCartThunk, toggleCart} from "../Cart/cart-reducer";
+import {getItemsInCartThunk, setOrderComplete, toggleCart} from "../Cart/cart-reducer";
 
-export const Header = ({logo,toggleCart,totalPrice}) => {
+export const Header = ({logo,toggleCart,totalPrice,setOrderComplete}) => {
 
     const cartToggling = () =>{
         const body = document.querySelector('body')
         body.classList.add('hidden')
+        setOrderComplete(false)
         toggleCart()
     }
 
@@ -41,4 +42,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     toggleCart,
     getItemsInCartThunk,
+    setOrderComplete
 })(Header)

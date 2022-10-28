@@ -5,23 +5,21 @@ import {getProfileItems} from "./profilePage-reducer";
 import {NavLink} from "react-router-dom";
 import emptyImage from '../../assets/img/emptyImage1.png'
 
-const ProfilePage = ({items, getProfileItems}) => {
-    // useEffect(() => {
-    //     getProfileItems()
-    // }, [])
+const ProfilePage = ({items}) => {
+
     return (
         <>
-            {items.length > 0
+            {items.some(el => el.isOrdered)
             ?<div className={style.itemsPage}>
                     <div className={style.headOfItemsPage}>
                         <h2>Мои покупки</h2>
                     </div>
                     <div className={style.gridItems}>
-                        {items.map(el => {
+                        {items.map(el => {if(el.isOrdered){
                             return (
                                 <Item key={el.id} img={el.img} tittle={el.tittle} price={el.price}/>
                             )
-                        })
+                        }})
                         }
                     </div>
                 </div>
@@ -46,7 +44,7 @@ const ProfilePage = ({items, getProfileItems}) => {
 }
 
 const mapStateToProps = (state) => ({
-    items: state.profilePage.items
+    items: state.mainPage.items
 })
 
 export default connect(mapStateToProps, {

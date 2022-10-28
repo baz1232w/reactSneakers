@@ -2,21 +2,22 @@ import {connect} from "react-redux";
 import Slider from "./Slider/Slider";
 import Items from "./Items/Items";
 import {useEffect} from "react";
-import {addedToCart, deleteFromCart, getItemsThunk, preferItem, unPrefer, unPreferItem} from "./manePage-reducer";
-import {addToCart, deleteCartItem} from "../Cart/cart-reducer";
+import {
+    deleteCart,
+    setPrefer,
+    unPrefer,
+    addToCart,
+} from "./manePage-reducer";
 import {compose} from "redux";
 
 const MainePage = ({items, ...props}) => {
-    useEffect(() => {
-        props.getItemsThunk()
-    }, [props.favoriteItems,props.cart])
 
     return (
         <div>
             <Slider/>
             {items ?
-                <Items deleteCartItem={props.deleteCartItem} deleteFromCart={props.deleteFromCart} addedToCart={props.addedToCart} unPreferItem={props.unPreferItem} preferItem={props.preferItem}
-                       items={items} addToCart={props.addToCart}/> : <div>Null</div>}
+                <Items deleteCart={props.deleteCart} addToCart={props.addToCart} unPrefer={props.unPrefer}
+                       setPrefer={props.setPrefer} items={items}/> : <div>Null</div>}
         </div>
     )
 }
@@ -29,12 +30,9 @@ const mapStateToProps = (state) => ({
 
 export default compose(
     connect(mapStateToProps, {
-        getItemsThunk,
-        addToCart,
-        preferItem,
-        unPreferItem,
-        addedToCart,
-        deleteFromCart,
-        deleteCartItem
+        setPrefer,
+        unPrefer,
+        deleteCart,
+        addToCart
     })
 )(MainePage)

@@ -1,34 +1,32 @@
 import {connect} from "react-redux";
 import style from "../MainePage/MainePage.module.css";
 import Item from "../MainePage/Items/Item/Item";
-import {useEffect} from "react";
-import {getPreferItems} from "./preferPage-reducer";
-import {addToCart, deleteCartItem} from "../Cart/cart-reducer";
-import {addedToCart, deleteFromCart, unPreferItem} from "../MainePage/manePage-reducer";
+import {unPrefer, deleteCart, setPrefer, addToCart} from "../MainePage/manePage-reducer";
 import emptyImage from "../../assets/img/emptyImage2.png";
 import {NavLink} from "react-router-dom";
 
-const PreferPage = ({items, getPreferItems, addToCart, unPreferItem, ...props}) => {
-
-    useEffect(() => {
-        getPreferItems()
-    }, [props.mainItems,props.cart])
+const PreferPage = ({items, getPreferItems, unPreferItem, ...props}) => {
 
     return (
         <>
-            {items.length > 0
+            {items.some(el => el.isPrefer === true)
                 ? <div className={style.itemsPage}>
                     <div className={style.headOfItemsPage}>
                         <h2>Мои закладки</h2>
                     </div>
                     <div className={style.gridItems}>
                         {items ? items.map(el => {
-                                return (
-                                    <Item addedToCart={props.addedToCart}deleteCartItem={props.deleteCartItem} deleteFromCart={props.deleteFromCart}
-                                          unPreferItem={unPreferItem} isPrefer={el.isPrefer} addToCart={addToCart}
-                                          id={el.id} key={el.id} img={el.img} tittle={el.tittle} price={el.price}
-                                          isAdded={el.isAdded}/>
-                                )
+                                if (el.isPrefer) {
+                                    return (
+                                        <Item
+                                            deleteCart={props.deleteCart} addToCart={props.addToCart} unPrefer={props.unPrefer}
+                                            setPrefer={props.setPrefer}
+                                            isPrefer={el.isPrefer}
+                                            code={el.code}
+                                            id={el.id} key={el.id} img={el.img} tittle={el.tittle} price={el.price}
+                                            isAdded={el.isAdded}/>
+                                    )
+                                }
                             }) :
                             <div>Пусто</div>}
                     </div>
@@ -51,16 +49,12 @@ const PreferPage = ({items, getPreferItems, addToCart, unPreferItem, ...props}) 
 }
 
 const mapStateToProps = (state) => ({
-    items: state.preferPage.items,
-    mainItems: state.mainPage.items,
-    cart:state.cart.items
+    items: state.mainPage.items,
 })
 
 export default connect(mapStateToProps, {
-    getPreferItems,
+    unPrefer,
+    setPrefer,
     addToCart,
-    unPreferItem,
-    deleteCartItem,
-    deleteFromCart,
-    addedToCart
+    deleteCart
 })(PreferPage)

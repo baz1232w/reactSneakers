@@ -14,7 +14,7 @@ const ItemCart = ({price, tittle, img, id, ...props}) => {
             <div>
                 <span>
                     <ion-icon onClick={() =>
-                        props.deleteCartItem(id)
+                        props.deleteCart(props.code)
                     } name="close-outline"></ion-icon>
                 </span>
             </div>
