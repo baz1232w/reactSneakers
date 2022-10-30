@@ -1,6 +1,6 @@
 import style from "../Cart.module.css";
 import {NavLink} from "react-router-dom";
-import emptyImage from "../../../assets/img/emptyCart.png";
+import emptyImage from "../../../assets/img/eventImages/emptyCart.png";
 
 const Empty = (props) => {
     return (

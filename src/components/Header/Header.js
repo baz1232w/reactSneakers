@@ -25,6 +25,7 @@ export const Header = ({toggleCart,setOrderComplete,totalPrice}) => {
     )
 }
 
+
 const mapStateToProps = (state) => ({
     totalPrice:state.mainPage.totalPrice
 })

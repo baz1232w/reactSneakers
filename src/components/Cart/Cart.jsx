@@ -34,12 +34,14 @@ const Cart = ({items,isOpen,totalPrice,setOrderComplete,getOrdered,setTotalPrice
     )
 }
 
+
 const mapStateToProps = (state) => ({
     items: state.mainPage.items,
     totalPrice: state.mainPage.totalPrice,
     isOpen: state.cart.isOpen,
     orderComplete: state.cart.orderComplete
 })
+
 
 export default connect(mapStateToProps, {
     toggleCart,
@@ -48,3 +50,4 @@ export default connect(mapStateToProps, {
     setOrderComplete,
     setTotalPrice
 })(Cart)
+

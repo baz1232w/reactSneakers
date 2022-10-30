@@ -1,5 +1,5 @@
 import style from "../Cart.module.css";
-import orderImage from "../../../assets/img/orderPage.jpg";
+import orderImage from "../../../assets/img/eventImages/orderPage.jpg";
 import {NavLink} from "react-router-dom";
 
 const OrderedComplete = (props) => {

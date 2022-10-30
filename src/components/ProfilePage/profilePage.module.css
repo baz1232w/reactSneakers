@@ -47,12 +47,6 @@
     position: absolute;
 }
 
-.slider {
-    width: 100%;
-    max-width: 960px;
-    margin: 0px auto 39px auto;
-}
-
 .itemsPage {
     padding: 0px 60px 20px 60px;
 }
