@@ -10,7 +10,7 @@ const OrderedPlace = ({items,totalPrice,getOrdered,setOrderComplete,setTotalPric
             <div className={style.cartScope}>
                 <div className={style.tittleWithBack}>
                     <h3>Корзина</h3>
-                    <IonIcon onClick={cartToggling} icon={arrowBack}></IonIcon>
+                    <IonIcon class={style.backArrow} onClick={cartToggling} icon={arrowBack}></IonIcon>
                 </div>
                 {items.map(el => {
                     if (el.isAdded) {
