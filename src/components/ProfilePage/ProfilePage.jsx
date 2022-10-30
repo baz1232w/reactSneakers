@@ -1,7 +1,6 @@
 import {connect} from "react-redux";
 import style from "../MainePage/MainePage.module.css";
 import Item from "../MainePage/Items/Item/Item";
-import {getProfileItems} from "./profilePage-reducer";
 import {NavLink} from "react-router-dom";
 import emptyImage from '../../assets/img/emptyImage1.png'
 
@@ -48,5 +47,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {
-    getProfileItems,
 })(ProfilePage)

@@ -16,7 +16,7 @@ const ItemCart = ({price, tittle, img, id, ...props}) => {
             <div>
                 <span>
                     <IonIcon onClick={() =>{
-                        props.deleteCart(props.code);
+                        props.setCart(props.code,false);
                         props.setTotalPrice()
                     }
                     } icon={closeOutline}></IonIcon>

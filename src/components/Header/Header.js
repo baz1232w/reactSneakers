@@ -2,11 +2,11 @@ import {connect} from "react-redux";
 import style from './Header.module.css'
 import Logo from "./Logo/Logo";
 import {NavLink} from "react-router-dom";
-import {getItemsInCartThunk, setOrderComplete, toggleCart} from "../Cart/cart-reducer";
+import {setOrderComplete, toggleCart} from "../Cart/cart-reducer";
 import {IonIcon} from "@ionic/react";
 import {cartOutline, heartCircleOutline, personOutline} from "ionicons/icons";
 
-export const Header = ({logo,toggleCart,setOrderComplete,totalPrice}) => {
+export const Header = ({toggleCart,setOrderComplete,totalPrice}) => {
 
     const cartToggling = () =>{
         const body = document.querySelector('body')
@@ -18,7 +18,7 @@ export const Header = ({logo,toggleCart,setOrderComplete,totalPrice}) => {
     return (
         <div className={style.header}>
             <div>
-                <Logo logo={logo}/>
+                <Logo/>
             </div>
             <div className={style.navigation}>
                 <div><IonIcon onClick={cartToggling
@@ -37,12 +37,10 @@ export const Header = ({logo,toggleCart,setOrderComplete,totalPrice}) => {
 
 const mapStateToProps = (state) => ({
     totalPrice:state.mainPage.totalPrice,
-    logo: state.header.logo,
 })
 
 
 export default connect(mapStateToProps, {
     toggleCart,
-    getItemsInCartThunk,
     setOrderComplete
 })(Header)

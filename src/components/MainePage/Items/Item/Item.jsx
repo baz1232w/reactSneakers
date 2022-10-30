@@ -9,10 +9,10 @@ const Item = (props) => {
             <div className={style.imageArea}>
                 {props.isPrefer
                     ? <span className={style.prefer}><IonIcon onClick={() => {
-                        props.unPrefer(props.code)
+                        props.setPrefer(props.code,false)
                     }} icon={heart}></IonIcon></span>
                     : <span className={style.preferBtn}><IonIcon onClick={() =>
-                        props.setPrefer(props.code)
+                        props.setPrefer(props.code,true)
                     } icon={heartOutline}></IonIcon></span>
                 }
 
@@ -28,11 +28,11 @@ const Item = (props) => {
                 </p>
                 {props.isAdded
                     ? <span className={style.deleteFromCartBtn}><IonIcon onClick={() => {
-                        props.deleteCart(props.code)
+                        props.setCart(props.code,false)
                         props.setTotalPrice()
                     }} icon={checkmarkOutline}>-</IonIcon></span>
                     : <span className={style.addToCardBtn}><IonIcon onClick={() => {
-                        props.addToCart(props.code)
+                        props.setCart(props.code,true)
                         props.setTotalPrice()
                     }} icon={addOutline}></IonIcon></span>
                 }

@@ -1,17 +1,10 @@
-
-const GET_ITEMS = 'manePage/get-items'
 const SET_PREFER = 'manePage/set-prefer'
-const UN_PREFER = 'manePage/un-prefer'
-const ADD_TO_CART = 'manePage/add-to-cart'
-const DELETE_FROM_CART = 'manePage/delete-from-cart'
+const SET_CART = 'manePage/set-cart'
 const GET_ORDERED = 'manePage/get-ordered'
 const SET_TOTAL_PRICE = 'cart-reducer/set-total-price'
 
 
 const initialState = {
-    slider: {
-        images: null
-    },
     items: [
         {
             "id": 1,
@@ -139,50 +132,23 @@ const initialState = {
 
 const mainPageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_ITEMS :
-            return {
-                ...state,
-                items: [...action.items]
-            }
         case SET_PREFER:
             return{
                 ...state,
                 items: [...state.items].map(el => {
                     if(el.code === action.code){
-                        el.isPrefer = true
+                        el.isPrefer = action.isPrefer
                         return el
                     }
                     return  el
                 })
             }
-        case UN_PREFER:
-            return {
-                ...state,
-                items: [...state.items].map(el => {
-                    if(el.code === action.code){
-                        el.isPrefer = false
-                        return el
-                    }
-                    return  el
-                })
-            }
-        case ADD_TO_CART:
+        case SET_CART:
             return{
                 ...state,
                 items: [...state.items].map(el => {
                     if(el.code === action.code){
-                        el.isAdded = true
-                        return el
-                    }
-                    return  el
-                })
-            }
-        case DELETE_FROM_CART:
-            return{
-                ...state,
-                items: [...state.items].map(el => {
-                    if(el.code === action.code){
-                        el.isAdded = false
+                        el.isAdded = action.isAdded
                         return el
                     }
                     return  el
@@ -211,46 +177,9 @@ const mainPageReducer = (state = initialState, action) => {
 
 }
 
-export const setPrefer = (code) => ({type: SET_PREFER, code})
-export const unPrefer = (code) => ({type: UN_PREFER, code})
-export const deleteCart = (code) => ({type: DELETE_FROM_CART, code})
-export const addToCart = (code) => ({type: ADD_TO_CART, code})
+export const setPrefer = (code,isPrefer) => ({type: SET_PREFER, code,isPrefer})
+export const setCart = (code,isAdded) => ({type: SET_CART, code, isAdded})
 export const getOrdered = () => ({type: GET_ORDERED})
 export const setTotalPrice = () => ({type: SET_TOTAL_PRICE})
-
-
-// export const preferItem = (id) => async (dispatch) => {
-//     const item = await jsonRequest.getItem(id)
-//     item.isPrefer = true
-//     await jsonRequest.preferItem(id, item)
-//     dispatch(setPrefer(item.code))
-// }
-//
-// export const unPreferItem = (id) => async (dispatch) => {
-//     const item = await jsonRequest.getItem(id)
-//     item.isPrefer = false
-//     await jsonRequest.preferItem(id, item)
-//     dispatch(unPrefer(item.code))
-// }
-//
-// export const addedToCart = (id) => async (dispatch) => {
-//     const item = await jsonRequest.getItem(id)
-//     item.isAdded = true
-//     await jsonRequest.preferItem(id, item)
-//     dispatch(addToCart(item.code))
-// }
-//
-// export const deleteFromCart = (id) => async (dispatch) => {
-//     const item = await jsonRequest.getItem(id)
-//     item.isAdded = false
-//     await jsonRequest.preferItem(id, item)
-//     dispatch(deleteCart(item.code))
-// }
-//
-// export const getItemsThunk = () => async (dispatch) => {
-//     const data = await jsonRequest.getItems()
-//     dispatch(getItems(data))
-// }
-
 
 export default mainPageReducer

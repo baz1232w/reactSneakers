@@ -5,32 +5,22 @@ import {setOrderComplete, toggleCart} from "./cart-reducer";
 import emptyImage from "../../assets/img/emptyCart.png";
 import orderImage from "../../assets/img/orderPage.jpg";
 import {NavLink} from "react-router-dom";
-import {deleteCart, getOrdered,setTotalPrice} from "../MainePage/manePage-reducer";
+import {getOrdered, setCart, setTotalPrice} from "../MainePage/manePage-reducer";
 
-const Cart = ({
-                  isOpen,
-                  items,
-                  toggleCart,
-                  deleteCart,
-                  getOrdered,
-                  setOrderComplete,
-                  orderComplete,
-                  setTotalPrice,
-                  totalPrice
-              }) => {
+const Cart = (props) => {
 
     const cartToggling = () => {
         const body = document.querySelector('body')
         body.classList.remove('hidden')
-        toggleCart()
+        props.toggleCart()
     }
 
     return (
-        <div className={isOpen ? style.open : style.close}>
+        <div className={props.isOpen ? style.open : style.close}>
             <div className={style.overlay} onClick={cartToggling}></div>
             <div className={style.cart}>
                 {
-                    orderComplete
+                    props.orderComplete
                         ? <div>
                             <h3>Корзина</h3>
                             <div className={style.emptyPage}>
@@ -47,14 +37,14 @@ const Cart = ({
                                 </div>
                             </div>
                         </div>
-                        : items.some(el => el.isAdded === true)
+                        : props.items.some(el => el.isAdded === true)
                             ? <>
                                 <div className={style.cartScope}>
                                     <h3>Корзина</h3>
-                                    {items.map(el => {
+                                    {props.items.map(el => {
                                         if (el.isAdded) {
                                             return (
-                                                <ItemCart deleteCart={deleteCart} setTotalPrice={setTotalPrice}
+                                                <ItemCart setCart={props.setCart} setTotalPrice={props.setTotalPrice}
                                                           code={el.code} img={el.img} tittle={el.tittle}
                                                           price={el.price} key={el.id}/>
                                             )
@@ -62,11 +52,11 @@ const Cart = ({
                                     })}
                                 </div>
                                 <div>
-                                    <p className={style.totalPrice}>Итого : {totalPrice ? `${totalPrice} грн.` : null}</p>
+                                    <p className={style.totalPrice}>Итого : {props.totalPrice ? `${props.totalPrice} грн.` : null}</p>
                                     <button className={style.orderBtn} onClick={() => {
-                                        setOrderComplete(true);
-                                        getOrdered();
-                                        setTotalPrice();
+                                        props.setOrderComplete(true);
+                                        props.getOrdered();
+                                        props.setTotalPrice();
                                     }}>Оформить заказ
                                     </button>
                                 </div>
@@ -106,7 +96,7 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
     toggleCart,
-    deleteCart,
+    setCart,
     getOrdered,
     setOrderComplete,
     setTotalPrice
