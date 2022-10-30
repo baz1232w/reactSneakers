@@ -128,14 +128,6 @@
     border: 1px solid #F8F8F8;
 }
 
-.preferBtn ion-icon:hover {
-    background-color: #BDBDBD;
-}
-
-.addToCardBtn ion-icon:hover {
-    background-color: #BDBDBD;
-}
-
 .deleteFromCartBtn ion-icon{
     color: #FFF;
 
@@ -189,6 +181,15 @@
     font-weight: 600;
 }
 
+@media (min-width: 1100px){
+    .preferBtn ion-icon:hover {
+        background-color: #BDBDBD;
+    }
+
+    .addToCardBtn ion-icon:hover {
+        background-color: #BDBDBD;
+    }
+}
 
 @media (max-width: 1100px){
     .slider{
@@ -199,6 +200,9 @@
         box-shadow: none;
         transform: scale(100%);
     }
+
+
+
 }
 
 @media (max-width: 800px){

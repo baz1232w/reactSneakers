@@ -1,11 +1,12 @@
 import style from "../Header.module.css";
 import {IonIcon} from "@ionic/react";
-import {cartOutline, heartCircleOutline, personOutline} from "ionicons/icons";
+import {cartOutline, heartCircleOutline, home, homeOutline, personOutline} from "ionicons/icons";
 import {NavLink} from "react-router-dom";
 
 const Navigation = ({cartToggling,totalPrice}) => {
     return(
         <div className={style.navigation}>
+            <NavLink to={'/main'}><IonIcon icon={homeOutline}></IonIcon></NavLink>
             <div><IonIcon onClick={cartToggling
             } icon={cartOutline}></IonIcon></div>
             <div>
