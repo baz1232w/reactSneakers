@@ -55,6 +55,11 @@
     margin: 0px auto 39px auto;
 }
 
+.slider img {
+    width: 100%;
+    max-width: 960px;
+}
+
 .itemsPage {
     padding: 0px 60px 20px 60px;
 }
@@ -113,6 +118,7 @@
     color: #FF8585;
     background-color: #FEF0F0;
     border-radius: 5px;
+    border: 1px solid #FEF0F0;
 }
 
 .addToCardBtn ion-icon {
@@ -137,6 +143,7 @@
     background: linear-gradient(180deg, #89F09C 0%, #3CC755 100%);
     border-radius: 5px;
     border: 0;
+    border: 1px solid #89F09C;
 }
 
 .emptyPage {
@@ -182,3 +189,55 @@
     font-weight: 600;
 }
 
+
+@media (max-width: 1100px){
+    .slider{
+        max-width: 750px;
+        margin: 0 20px 35px 20px;
+    }
+    .gridItem:hover {
+        box-shadow: none;
+        transform: scale(100%);
+    }
+}
+
+@media (max-width: 800px){
+    .slider{
+        max-width: 600px;
+        margin: 0 20px 35px 20px;
+    }
+}
+
+@media (max-width: 750px){
+    .gridItems{
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 651px){
+    .slider{
+        max-width: 500px;
+        margin: 0 20px 35px 20px;
+    }
+    .headOfItemsPage h2{
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 551px){
+    .slider{
+        display: none;
+    }
+    .gridItems{
+        justify-content: center;
+        grid-template-columns: 350px;
+    }
+    .headOfItemsPage{
+        flex-flow: column;
+        text-align: center;
+    }
+    .headOfItemsPage input {
+        max-width: 300px;
+        margin: 25px auto 0px auto;
+    }
+}

@@ -24,7 +24,7 @@ const Cart = ({items,isOpen,totalPrice,setOrderComplete,getOrdered,setTotalPrice
                         : items.some(el => el.isAdded)
                             ? <OrderedPlace totalPrice={totalPrice} setOrderComplete={setOrderComplete}
                                             getOrdered={getOrdered} setTotalPrice={setTotalPrice}
-                                            setCart={setCart} items={items}
+                                            setCart={setCart} items={items} cartToggling={cartToggling}
                             />
                             : <Empty cartToggling={cartToggling} />
                 }

@@ -87,9 +87,6 @@
     transition: .2s;
 }
 
-.orderBtn:hover {
-    letter-spacing: 2px
-}
 
 .emptyPage {
     width: 100%;
@@ -144,6 +141,24 @@
 
 .totalPrice{
     font-weight: 700;
+}
+
+@media (max-width: 551px){
+    .cart{
+        width: 100%;
+    }
+    .orderBtn{
+        width: 100%;
+        max-width: 100%;
+        margin: 24px auto;
+    }
+    .tittleWithBack{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .tittleWithBack span{
+    }
 }
 
 

@@ -69,5 +69,16 @@ ion-icon:hover{
     font-weight: 600;
 }
 
+@media(max-width: 651px){
+    .header{
+        flex-flow: column;
+        padding: 30px 10px 20px 10px;
+    }
+    .navigation{
+        display: flex;
+        align-items: center;
+        margin: 20px 0px 0px 0px;
+    }
+}
 
 
