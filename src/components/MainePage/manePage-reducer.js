@@ -5,6 +5,8 @@ const UN_PREFER = 'manePage/un-prefer'
 const ADD_TO_CART = 'manePage/add-to-cart'
 const DELETE_FROM_CART = 'manePage/delete-from-cart'
 const GET_ORDERED = 'manePage/get-ordered'
+const SET_TOTAL_PRICE = 'cart-reducer/set-total-price'
+
 
 const initialState = {
     slider: {
@@ -132,6 +134,7 @@ const initialState = {
             "isOrdered": false
         }
     ],
+    totalPrice:null
 }
 
 const mainPageReducer = (state = initialState, action) => {
@@ -197,18 +200,24 @@ const mainPageReducer = (state = initialState, action) => {
                     return  el
                 })
             }
+        case SET_TOTAL_PRICE:
+            return {
+                ...state,
+                totalPrice: state.items.filter(el => el.isAdded).reduce((sum,el) =>sum += el.price, 0)
+            }
         default:
             return state
     }
 
 }
 
-const getItems = (items) => ({type: GET_ITEMS, items})
 export const setPrefer = (code) => ({type: SET_PREFER, code})
 export const unPrefer = (code) => ({type: UN_PREFER, code})
 export const deleteCart = (code) => ({type: DELETE_FROM_CART, code})
 export const addToCart = (code) => ({type: ADD_TO_CART, code})
 export const getOrdered = () => ({type: GET_ORDERED})
+export const setTotalPrice = () => ({type: SET_TOTAL_PRICE})
+
 
 // export const preferItem = (id) => async (dispatch) => {
 //     const item = await jsonRequest.getItem(id)

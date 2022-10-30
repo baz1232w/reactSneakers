@@ -3,8 +3,10 @@ import style from './Header.module.css'
 import Logo from "./Logo/Logo";
 import {NavLink} from "react-router-dom";
 import {getItemsInCartThunk, setOrderComplete, toggleCart} from "../Cart/cart-reducer";
+import {IonIcon} from "@ionic/react";
+import {cartOutline, heartCircleOutline, personOutline} from "ionicons/icons";
 
-export const Header = ({logo,toggleCart,totalPrice,setOrderComplete}) => {
+export const Header = ({logo,toggleCart,setOrderComplete,totalPrice}) => {
 
     const cartToggling = () =>{
         const body = document.querySelector('body')
@@ -19,13 +21,13 @@ export const Header = ({logo,toggleCart,totalPrice,setOrderComplete}) => {
                 <Logo logo={logo}/>
             </div>
             <div className={style.navigation}>
-                <div><ion-icon onClick={cartToggling
-                } name="cart-outline"></ion-icon></div>
+                <div><IonIcon onClick={cartToggling
+                } icon={cartOutline}></IonIcon></div>
                 <div>
                     <span className={style.totalPrice}>{totalPrice ? `${totalPrice} грн.` : null }</span>
                 </div>
-                <NavLink to={'/prefer'}><ion-icon name="heart-outline"></ion-icon></NavLink>
-                <NavLink to={'/profile'}><ion-icon name="person-outline"></ion-icon></NavLink>
+                <NavLink to={'/prefer'}><IonIcon icon={heartCircleOutline}></IonIcon></NavLink>
+                <NavLink to={'/profile'}><IonIcon icon={personOutline}></IonIcon></NavLink>
             </div>
         </div>
 
@@ -34,8 +36,8 @@ export const Header = ({logo,toggleCart,totalPrice,setOrderComplete}) => {
 }
 
 const mapStateToProps = (state) => ({
+    totalPrice:state.mainPage.totalPrice,
     logo: state.header.logo,
-    totalPrice: state.cart.totalPrice
 })
 
 

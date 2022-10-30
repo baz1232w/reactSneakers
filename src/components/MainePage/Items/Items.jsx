@@ -1,6 +1,7 @@
 import Item from './Item/Item';
 import style from '../MainePage.module.css'
 import {useState} from "react";
+import {setTotalPrice} from "../manePage-reducer";
 
 const Items = ({items, ...props}) => {
     const [inputText,setInputText] = useState()
@@ -30,7 +31,7 @@ const Items = ({items, ...props}) => {
             <div className={style.gridItems}>
                 {filteredItems.map(el => {
                     return (
-                        <Item deleteCart={props.deleteCart} unPrefer={props.unPrefer}
+                        <Item setTotalPrice={props.setTotalPrice} deleteCart={props.deleteCart} unPrefer={props.unPrefer}
                               addToCart={props.addToCart} setPrefer={props.setPrefer}
                               code={el.code} key={el.id} id={el.id} img={el.img} tittle={el.tittle}
                               price={el.price} isPrefer={el.isPrefer} isAdded={el.isAdded}/>

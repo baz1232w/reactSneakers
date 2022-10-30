@@ -1,12 +1,11 @@
 import {connect} from "react-redux";
 import Slider from "./Slider/Slider";
 import Items from "./Items/Items";
-import {useEffect} from "react";
 import {
     deleteCart,
     setPrefer,
     unPrefer,
-    addToCart,
+    addToCart, setTotalPrice,
 } from "./manePage-reducer";
 import {compose} from "redux";
 
@@ -17,7 +16,7 @@ const MainePage = ({items, ...props}) => {
             <Slider/>
             {items ?
                 <Items deleteCart={props.deleteCart} addToCart={props.addToCart} unPrefer={props.unPrefer}
-                       setPrefer={props.setPrefer} items={items}/> : <div>Null</div>}
+                       setPrefer={props.setPrefer}  setTotalPrice={props.setTotalPrice} items={items}/> : <div>Null</div>}
         </div>
     )
 }
@@ -33,6 +32,7 @@ export default compose(
         setPrefer,
         unPrefer,
         deleteCart,
-        addToCart
+        addToCart,
+        setTotalPrice
     })
 )(MainePage)

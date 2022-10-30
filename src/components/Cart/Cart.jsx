@@ -1,27 +1,23 @@
 import {connect} from 'react-redux';
 import style from './Cart.module.css'
 import ItemCart from "./ItemCart/ItemCart";
-import {setOrderComplete, setTotalPrice, toggleCart} from "./cart-reducer";
-import {useEffect} from "react";
+import {setOrderComplete, toggleCart} from "./cart-reducer";
 import emptyImage from "../../assets/img/emptyCart.png";
 import orderImage from "../../assets/img/orderPage.jpg";
 import {NavLink} from "react-router-dom";
-import {deleteCart, getOrdered} from "../MainePage/manePage-reducer";
+import {deleteCart, getOrdered,setTotalPrice} from "../MainePage/manePage-reducer";
 
 const Cart = ({
                   isOpen,
                   items,
                   toggleCart,
-                  totalPrice,
-                  setTotalPrice,
                   deleteCart,
                   getOrdered,
                   setOrderComplete,
-                  orderComplete
+                  orderComplete,
+                  setTotalPrice,
+                  totalPrice
               }) => {
-    useEffect(() => {
-        setTotalPrice()
-    }, [items])
 
     const cartToggling = () => {
         const body = document.querySelector('body')
@@ -53,12 +49,12 @@ const Cart = ({
                         </div>
                         : items.some(el => el.isAdded === true)
                             ? <>
-                                <div>
+                                <div className={style.cartScope}>
                                     <h3>Корзина</h3>
                                     {items.map(el => {
                                         if (el.isAdded) {
                                             return (
-                                                <ItemCart deleteCart={deleteCart}
+                                                <ItemCart deleteCart={deleteCart} setTotalPrice={setTotalPrice}
                                                           code={el.code} img={el.img} tittle={el.tittle}
                                                           price={el.price} key={el.id}/>
                                             )
@@ -69,7 +65,8 @@ const Cart = ({
                                     <p className={style.totalPrice}>Итого : {totalPrice ? `${totalPrice} грн.` : null}</p>
                                     <button className={style.orderBtn} onClick={() => {
                                         setOrderComplete(true);
-                                        getOrdered()
+                                        getOrdered();
+                                        setTotalPrice();
                                     }}>Оформить заказ
                                     </button>
                                 </div>
@@ -104,13 +101,13 @@ const mapStateToProps = (state) => ({
     items: state.mainPage.items,
     isOpen: state.cart.isOpen,
     orderComplete: state.cart.orderComplete,
-    totalPrice: state.cart.totalPrice
+    totalPrice: state.mainPage.totalPrice
 })
 
 export default connect(mapStateToProps, {
     toggleCart,
-    setTotalPrice,
     deleteCart,
     getOrdered,
-    setOrderComplete
+    setOrderComplete,
+    setTotalPrice
 })(Cart)

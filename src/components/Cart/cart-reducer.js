@@ -9,7 +9,6 @@ const initialState = {
     items: [],
     isOpen: false,
     orderComplete: false,
-    totalPrice:null
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -43,7 +42,7 @@ export const setOrderComplete = (result) => ({type:ORDER_COMPLETE,result})
 
 const getItemsInCart = (items) => ({type: ADD_TO_CART, items})
 
-export const setTotalPrice = () => ({type: SET_TOTAL_PRICE})
+// export const setTotalPrice = () => ({type: SET_TOTAL_PRICE})
 
 export const toggleCart = () =>({type: TOGGLE_CART})
 

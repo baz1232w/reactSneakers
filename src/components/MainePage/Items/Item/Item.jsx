@@ -1,4 +1,6 @@
 import style from '../../MainePage.module.css'
+import {IonIcon} from "@ionic/react";
+import {addOutline, checkmarkOutline, heart, heartOutline} from "ionicons/icons";
 
 const Item = (props) => {
 
@@ -6,12 +8,12 @@ const Item = (props) => {
         <div className={style.gridItem}>
             <div className={style.imageArea}>
                 {props.isPrefer
-                    ? <span className={style.prefer}><ion-icon onClick={() => {
+                    ? <span className={style.prefer}><IonIcon onClick={() => {
                         props.unPrefer(props.code)
-                    }} name="heart">-</ion-icon></span>
-                    : <span className={style.preferBtn}><ion-icon onClick={() =>
+                    }} icon={heart}></IonIcon></span>
+                    : <span className={style.preferBtn}><IonIcon onClick={() =>
                         props.setPrefer(props.code)
-                    } name="heart-outline">+</ion-icon></span>
+                    } icon={heartOutline}></IonIcon></span>
                 }
 
                 <img src={props.img} alt={`Photo of ${props.tittle}`}/>
@@ -25,12 +27,14 @@ const Item = (props) => {
                     className={style.price}>{props.price} грн.</span>
                 </p>
                 {props.isAdded
-                    ? <span className={style.deleteFromCartBtn}><ion-icon onClick={() => {
+                    ? <span className={style.deleteFromCartBtn}><IonIcon onClick={() => {
                         props.deleteCart(props.code)
-                    }} name='checkmark-outline'>-</ion-icon></span>
-                    : <span className={style.addToCardBtn}><ion-icon onClick={() => {
+                        props.setTotalPrice()
+                    }} icon={checkmarkOutline}>-</IonIcon></span>
+                    : <span className={style.addToCardBtn}><IonIcon onClick={() => {
                         props.addToCart(props.code)
-                    }} name="add-outline">+</ion-icon></span>
+                        props.setTotalPrice()
+                    }} icon={addOutline}></IonIcon></span>
                 }
 
 

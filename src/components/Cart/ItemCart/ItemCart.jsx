@@ -1,4 +1,6 @@
 import style from '../Cart.module.css'
+import {IonIcon} from "@ionic/react";
+import {closeOutline} from "ionicons/icons";
 
 const ItemCart = ({price, tittle, img, id, ...props}) => {
     return (
@@ -13,9 +15,11 @@ const ItemCart = ({price, tittle, img, id, ...props}) => {
             </div>
             <div>
                 <span>
-                    <ion-icon onClick={() =>
-                        props.deleteCart(props.code)
-                    } name="close-outline"></ion-icon>
+                    <IonIcon onClick={() =>{
+                        props.deleteCart(props.code);
+                        props.setTotalPrice()
+                    }
+                    } icon={closeOutline}></IonIcon>
                 </span>
             </div>
         </div>

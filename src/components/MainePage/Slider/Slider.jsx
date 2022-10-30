@@ -1,12 +1,31 @@
-import sliderImage from '../../../assets/img/SliderImage/SliderImage_1.png'
+import sliderImage_1 from '../../../assets/img/SliderImage/SliderImage_1.png'
+import sliderImage_2 from '../../../assets/img/SliderImage/SliderImage_2.png'
+import sliderImage_3 from '../../../assets/img/SliderImage/SliderImage_3.jpg'
 import style from '../MainePage.module.css'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import {Navigation, Pagination, A11y, Autoplay} from 'swiper';
+import 'swiper/css';
+import 'swiper/css/bundle';
 
-const Slider = (props) => {
-    return(
-        <div className={style.slider}>
-            <img src={sliderImage} alt=""/>
-        </div>
-    )
+
+const Slider = () => {
+        return (
+            <Swiper className={style.slider}
+                modules={[Navigation, Pagination, A11y,Autoplay]}
+                autoplay={{delay:3000}}
+
+                spaceBetween={50}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                scrollbar={{ draggable: true }}
+
+            >
+                <SwiperSlide><img src={sliderImage_1} alt="img"/></SwiperSlide>
+                <SwiperSlide><img src={sliderImage_2} alt="img"/></SwiperSlide>
+                <SwiperSlide><img src={sliderImage_3} alt="img"/></SwiperSlide>
+            </Swiper>
+        );
 }
 
 export default Slider

@@ -134,4 +134,17 @@
     font-weight: 600;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+.cartScope{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.totalPrice{
+    font-weight: 700;
+}
+
+
 

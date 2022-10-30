@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import style from "../MainePage/MainePage.module.css";
 import Item from "../MainePage/Items/Item/Item";
-import {unPrefer, deleteCart, setPrefer, addToCart} from "../MainePage/manePage-reducer";
+import {unPrefer, deleteCart, setPrefer, addToCart, setTotalPrice} from "../MainePage/manePage-reducer";
 import emptyImage from "../../assets/img/emptyImage2.png";
 import {NavLink} from "react-router-dom";
 
@@ -20,7 +20,7 @@ const PreferPage = ({items, getPreferItems, unPreferItem, ...props}) => {
                                     return (
                                         <Item
                                             deleteCart={props.deleteCart} addToCart={props.addToCart} unPrefer={props.unPrefer}
-                                            setPrefer={props.setPrefer}
+                                            setPrefer={props.setPrefer} setTotalPrice={props.setTotalPrice}
                                             isPrefer={el.isPrefer}
                                             code={el.code}
                                             id={el.id} key={el.id} img={el.img} tittle={el.tittle} price={el.price}
@@ -56,5 +56,6 @@ export default connect(mapStateToProps, {
     unPrefer,
     setPrefer,
     addToCart,
-    deleteCart
+    deleteCart,
+    setTotalPrice
 })(PreferPage)
