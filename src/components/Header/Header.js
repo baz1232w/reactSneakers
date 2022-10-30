@@ -1,10 +1,8 @@
 import {connect} from "react-redux";
 import style from './Header.module.css'
 import Logo from "./Logo/Logo";
-import {NavLink} from "react-router-dom";
 import {setOrderComplete, toggleCart} from "../Cart/cart-reducer";
-import {IonIcon} from "@ionic/react";
-import {cartOutline, heartCircleOutline, personOutline} from "ionicons/icons";
+import Navigation from "./Navigation/Navigation";
 
 export const Header = ({toggleCart,setOrderComplete,totalPrice}) => {
 
@@ -20,15 +18,7 @@ export const Header = ({toggleCart,setOrderComplete,totalPrice}) => {
             <div>
                 <Logo/>
             </div>
-            <div className={style.navigation}>
-                <div><IonIcon onClick={cartToggling
-                } icon={cartOutline}></IonIcon></div>
-                <div>
-                    <span className={style.totalPrice}>{totalPrice ? `${totalPrice} грн.` : null }</span>
-                </div>
-                <NavLink to={'/prefer'}><IonIcon icon={heartCircleOutline}></IonIcon></NavLink>
-                <NavLink to={'/profile'}><IonIcon icon={personOutline}></IonIcon></NavLink>
-            </div>
+            <Navigation totalPrice={totalPrice} cartToggling={cartToggling}/>
         </div>
 
 
@@ -36,7 +26,7 @@ export const Header = ({toggleCart,setOrderComplete,totalPrice}) => {
 }
 
 const mapStateToProps = (state) => ({
-    totalPrice:state.mainPage.totalPrice,
+    totalPrice:state.mainPage.totalPrice
 })
 
 

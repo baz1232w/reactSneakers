@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import style from "../MainePage/MainePage.module.css";
-import Item from "../MainePage/Items/Item/Item";
-import {setPrefer, setTotalPrice, setCart} from "../MainePage/manePage-reducer";
+import style from "../MainPage/MainPage.module.css";
+import Item from "../MainPage/ItemsPage/Item/Item";
+import {setPrefer, setTotalPrice, setCart} from "../MainPage/mainPage-reducer";
 import emptyImage from "../../assets/img/emptyImage2.png";
 import {NavLink} from "react-router-dom";
 

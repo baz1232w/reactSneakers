@@ -1,86 +1,33 @@
 import {connect} from 'react-redux';
 import style from './Cart.module.css'
-import ItemCart from "./ItemCart/ItemCart";
 import {setOrderComplete, toggleCart} from "./cart-reducer";
-import emptyImage from "../../assets/img/emptyCart.png";
-import orderImage from "../../assets/img/orderPage.jpg";
-import {NavLink} from "react-router-dom";
-import {getOrdered, setCart, setTotalPrice} from "../MainePage/manePage-reducer";
+import {getOrdered, setCart, setTotalPrice} from "../MainPage/mainPage-reducer";
+import OrderedComplete from "./OrderedComplete/Ordered";
+import Empty from "./Empty/Empty";
+import OrderedPlace from "./OrderedPlace/OrderedPlace";
 
-const Cart = (props) => {
+const Cart = ({items,isOpen,totalPrice,setOrderComplete,getOrdered,setTotalPrice,setCart,toggleCart,orderComplete}) => {
 
     const cartToggling = () => {
         const body = document.querySelector('body')
         body.classList.remove('hidden')
-        props.toggleCart()
+        toggleCart()
     }
 
     return (
-        <div className={props.isOpen ? style.open : style.close}>
+        <div className={isOpen ? style.open : style.close}>
             <div className={style.overlay} onClick={cartToggling}></div>
             <div className={style.cart}>
                 {
-                    props.orderComplete
-                        ? <div>
-                            <h3>Корзина</h3>
-                            <div className={style.emptyPage}>
-                                <div>
-                                    <img src={orderImage} alt="image"/>
-                                    <h3>Заказ оформлен!</h3>
-                                    <p>Ваш заказ #18 скоро будет передан</p>
-                                    <p>курьерской доставке</p>
-                                    <div>
-                                        <NavLink onClick={cartToggling} to={'/main'}>
-                                            <button className={style.backBtn}>Вернуться назад</button>
-                                        </NavLink>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        : props.items.some(el => el.isAdded === true)
-                            ? <>
-                                <div className={style.cartScope}>
-                                    <h3>Корзина</h3>
-                                    {props.items.map(el => {
-                                        if (el.isAdded) {
-                                            return (
-                                                <ItemCart setCart={props.setCart} setTotalPrice={props.setTotalPrice}
-                                                          code={el.code} img={el.img} tittle={el.tittle}
-                                                          price={el.price} key={el.id}/>
-                                            )
-                                        }
-                                    })}
-                                </div>
-                                <div>
-                                    <p className={style.totalPrice}>Итого : {props.totalPrice ? `${props.totalPrice} грн.` : null}</p>
-                                    <button className={style.orderBtn} onClick={() => {
-                                        props.setOrderComplete(true);
-                                        props.getOrdered();
-                                        props.setTotalPrice();
-                                    }}>Оформить заказ
-                                    </button>
-                                </div>
-                            </>
-                            : <div>
-                                <h3>Корзина</h3>
-                                <div className={style.emptyPage}>
-                                    <div>
-                                        <img src={emptyImage} alt="image"/>
-                                        <h3>Корзина пустая</h3>
-                                        <p>Добавьте хотя бы одну пару</p>
-                                        <p>кроссовок, чтобы сделать заказ.</p>
-                                        <div>
-                                            <NavLink onClick={cartToggling} to={'/main'}>
-                                                <button className={style.backBtn}>Вернуться назад</button>
-                                            </NavLink>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                    orderComplete
+                        ? <OrderedComplete cartToggling={cartToggling}/>
+                        : items.some(el => el.isAdded)
+                            ? <OrderedPlace totalPrice={totalPrice} setOrderComplete={setOrderComplete}
+                                            getOrdered={getOrdered} setTotalPrice={setTotalPrice}
+                                            setCart={setCart} items={items}
+                            />
+                            : <Empty cartToggling={cartToggling} />
                 }
-
-
             </div>
 
         </div>
@@ -89,9 +36,9 @@ const Cart = (props) => {
 
 const mapStateToProps = (state) => ({
     items: state.mainPage.items,
+    totalPrice: state.mainPage.totalPrice,
     isOpen: state.cart.isOpen,
-    orderComplete: state.cart.orderComplete,
-    totalPrice: state.mainPage.totalPrice
+    orderComplete: state.cart.orderComplete
 })
 
 export default connect(mapStateToProps, {

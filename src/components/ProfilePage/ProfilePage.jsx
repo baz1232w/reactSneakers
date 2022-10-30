@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import style from "../MainePage/MainePage.module.css";
-import Item from "../MainePage/Items/Item/Item";
+import style from "../MainPage/MainPage.module.css";
+import Item from "../MainPage/ItemsPage/Item/Item";
 import {NavLink} from "react-router-dom";
 import emptyImage from '../../assets/img/emptyImage1.png'
 

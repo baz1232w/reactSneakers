@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
-import mainPageReducer from "../components/MainePage/manePage-reducer";
+import mainPageReducer from "../components/MainPage/mainPage-reducer";
 import cartReducer from "../components/Cart/cart-reducer";
 import thunk from 'redux-thunk'
 

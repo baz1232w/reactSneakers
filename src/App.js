@@ -1,5 +1,5 @@
 import style from './App.module.css';
-import MaineContainer from './components/MainePage/MainePage';
+import MaineContainer from './components/MainPage/MainPage';
 import HeaderContainer from './components/Header/Header'
 import CartContainer from './components/Cart/Cart'
 import {Route, Routes} from "react-router-dom";
